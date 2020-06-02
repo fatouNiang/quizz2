@@ -50,18 +50,20 @@ try{
         <form action="" method="post" id="form">
         <?= $message ?>
             <div class="form-group form-g">
-                <input type="text" class="form-control input-control" id="login" placeholder="login" name="login">
+                <input type="text" class="form-control input-control" id="login" placeholder="login" name="login" required >
                 <div class="img1"><img src="./public/image/icone1.jpg" alt="" class="img1"></div>
-                <small id="login_error" class="text-danger font-weight-bold"></small>
+                <small id="login" class="form-text text-muted"></small>
             </div>
             <div class="form-group form-g">
-                <input type="password" class="form-control input-control" id="pwd" placeholder="password" name="password">
+                <input type="password" class="form-control input-control" id="password" placeholder="password" name="password" required>
                 <div class="img1"><img src="./public/image/ic-password.png" alt="" class="img1"></div>
-                <small id="pwd_error" class="text-danger font-weight-bold"></small>
+                <small id="password" class="form-text text-muted"></small>
             </div>
             <input type="submit" class="btn btn-primary btn-connexion" value="CONNEXION" name="connexion">
             <h6>Vous n'avez pas de compte ?</h6>
             <a href="index.php?lien=inscription" class="btn-white">creer un compte</a>
         </form>
     </div>
-    <script src="./public/js/validationConnexion.js"></script>
+<script>
+    $("#form").validate();
+</script>

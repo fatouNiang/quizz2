@@ -46,11 +46,7 @@ if(isset($_POST["creer_compte"])){
         <h2 class="title">S'INSCRIRE</h2>
         <div class="sous-titre3">pour tester votre niveau de culture general</div>
         <button type="button" class="btn btn-light btn-conRetour"><a href="index.php"> connexion</a></button>
-        <?php
-        if(isset($message)){
-            echo'<span class="text-danger">'. $message.'</span>';
-        }
-        ?>
+       
         
     </div>
     <div class="col-sm partie-blanche">
@@ -61,26 +57,27 @@ if(isset($_POST["creer_compte"])){
         
             <div class="form-group form-gr ">
                 <input type="text" class="form-control control-form" id="nom" placeholder="nom" name="nom">
-                <small  class="form-text text-muted">validattion error</small>
+                <small id="nom_error" class="text-danger"></small>
             </div>
             <div class="form-group form-gr ">
                 <input type="text" class="form-control control-form" id="prenom" placeholder="prenom" name="prenom">
-                <small  class="form-text text-muted">validattion error</small>
+                <small id="prenom_error" class="text-danger"></small>
             </div>
             <div class="form-group form-gr ">
                 <input type="text" class="form-control control-form" id="login" placeholder="login" name="login">
-                <small  class="form-text text-muted">validattion error</small>
+                <small id="login_error" class="text-danger"></small>
+                <?php if(isset($message)){ echo'<small class="text-danger">'. $message.'</small>'; }?>
             </div>
             <div class="form-group form-gr ">
-                <input type="password" class="form-control control-form " id="password" placeholder="password" name="password">
-                <small class="form-text text-muted">validattion error</small>
+                <input type="password" class="form-control control-form " id="pwd" placeholder="password" name="password">
+                <small id="pwd_error" class="text-danger"></small>
             </div>
             <div class="form-group form-gr">
-                <input type="password" class="form-control control-form " id="password2" placeholder="password confirm">
-                <small class="form-text text-muted">validattion error</small>
+                <input type="password" class="form-control control-form " id="pwd2" placeholder="password confirm">
+                <small id="pwd2_error" class="text-danger"></small>
             </div>
             <div class="choise form-gr">
-            <small id="" class="form-text text-muted">validattion error</small>
+            <!-- <small id="" class="form-text text-muted"></small> -->
                 <label for="file" class="label-file">Choisir image</label>
                 <input id="file" type="file" class="input-file" accept="image/*" name="image" onchange="loadFile(event)"> 
             </div>
@@ -89,13 +86,135 @@ if(isset($_POST["creer_compte"])){
         </form>
     </div>
 </div>
-<script src="./public/js/validateInscription.js"></script>
- <script>
+<!-- <script src="./public/js/inscription.js"></script> -->
+<script>
+
+    // script de validation
+
+    // $("#form").validate();
+
+    // affichage de l'image dans dans son cadre
+
 var loadFile = function(event) {
-var output = document.getElementById('images');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src)
+    var output = document.getElementById('images');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+          URL.revokeObjectURL(output.src)
+        }
+      };
+
+
+        // Hiding error message and define error values
+
+        $("#nom_error").hide();
+        $("#prenom_error").hide();
+        $("#login_error").hide();
+        $("#pwd_error").hide();
+        $("#pwd2_error").hide();
+       
+
+
+var nom_error = false;
+var prenom_error = false;
+var login_error = false;
+var pwd_error = false;
+var pwd2_error = false;
+
+// Function
+
+function check_nom() {
+    var nom_length = $("#nom").val().length;
+    if(nom_length < 1) {
+        $("#nom_error").html("Ce champs est obligatoire");
+        $("#nom_error").show();
+        nom_error = true;
+    }else {
+        $("#nom_error").hide();
     }
-  };
- </script>
+}
+
+function check_prenom() {
+    var prenom_length = $("#prenom").val().length;
+    if(prenom_length < 1) {
+        $("#prenom_error").html("Ce champs est obligatoire");
+        $("#prenom_error").show();
+        prenom_error = true;
+    }else {
+        $("#prenom_error").hide();
+    }
+}
+
+function check_login() {
+    var login_length = $("#login").val().length;
+    if(login_length < 1) {
+        $("#login_error").html("le login est obligatoire");
+        $("#login_error").show();
+        login_error = true;
+    }else {
+        $("#login_error").hide();
+    }
+}
+
+function check_pwd() {
+    var pwd_length = $("#pwd").val().length;
+    if(pwd_length < 1) {
+        $("#pwd_error").html("le mot de passe est obligatoire");
+        $("#pwd_error").show();
+        pwd_error = true;
+    }else {
+        $("#pwd_error").hide();
+    }
+}
+
+function check_pwd2() {
+
+    var pwd = $("#pwd").val();
+    var pwd2 = $("#pwd2").val();
+
+    if(pwd != pwd2) {
+        $("#pwd2_error").html("les mots passe de correspondent pas");
+        $("#pwd2_error").show();
+        pwd2_error = true;
+    }else {
+        $("#pwd2_error").hide();
+    }
+}
+
+//LES EVENEMENTS
+
+$("#nom").focusout(function() { 
+    check_login();
+});
+
+$("#prenom").focusout(function() { 
+    check_login();
+});
+$("#login").focusout(function() { 
+    check_login();
+});
+
+$("#pwd").focusout(function() {
+    check_pwd();
+});
+
+$("#form").submit(function() {
+
+    nom_error = false;
+    prenom_error = false;
+    login_error = false;
+    pwd_error = false;
+    pwd2_error = false;
+
+    check_nom();
+    check_prenom();
+    check_login();
+    check_pwd();
+    check_pwd2();
+
+    if(nom_error == false && prenom_error == false && login_error == false && pwd_error == false && pwd2_error == false){
+        return true;
+    }else{
+        return false;
+    }
+});
+</script>
