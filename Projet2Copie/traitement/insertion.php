@@ -1,20 +1,65 @@
 <?php 
+require_once('connexiondb.php');
+global $connexion;
+
+$result= 0;
+$target= "./public/image/".basename($_FILES['image']['name']);
+$nom=trim($_POST['nom']);
+$prenom=trim($_POST['prenom']);
+$login = trim($_POST['login']);
+$password=trim($_POST['password']);
+$images= $_FILES['image']['name'];
+$role='joueur';
+$score= 500;
+
+$objectPDO= "INSERT INTO users VALUES(NULL,'$nom','$prenom','$login','$password','$images','$role','$score')";
+move_uploaded_file($_FILES['image']['tmp_name'], $target);
+ ;
+if($connexion->exec($objectPDO)){
+    // header('location:index.php');
+    $result=1;
+}else{
+    echo $result;
+    
+}
 
 
 
 
 
-if(isset($_POST["creer_compte"])){
-    var_dump($_POST);
-    // $target= "./public/image/".basename($_FILES['image']['name']);
-    // require_once('connexiondb.php');
-    // $nom=$_POST['nom'];
-    // $prenom=$_POST['prenom'];
-    // $login = $_POST['login'];
-    // $password=$_POST['password'];
-    // $images= $_FILES['image']['name'];
-    // $role='joueur';
-    // $score= 500;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// if(isset($_POST["creer_compte"])){
+//     var_dump($_POST);
+//     $target= "./public/image/".basename($_FILES['image']['name']);
+//     require_once('connexiondb.php');
+//     $nom=$_POST['nom'];
+//     $prenom=$_POST['prenom'];
+//     $login = $_POST['login'];
+//     $password=$_POST['password'];
+//     $images= $_FILES['image']['name'];
+//     $role='joueur';
+//     $score= 500;
 
     // if(!empty($nom) && !empty($prenom) && !empty($login) && !empty($password) && !empty($images)){
 
@@ -29,7 +74,7 @@ if(isset($_POST["creer_compte"])){
     //     $connexion->exec($query);
     //     header('location:index.php');
     // }
-}
+// }
 
 
 // if(isset($_POST['creer_compte'])){

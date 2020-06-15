@@ -1,0 +1,63 @@
+
+@media screen and (max-width:575px) {
+    .part_bleu {
+        height: 15%;
+        width: 100%;
+        font-size: 25px;
+    }
+    .part_blanc {
+        width: 100%;
+        height: 85%;
+    }
+    .btn {
+        font-size: 15px;
+    }
+    /* inscription Joueur */
+    .zone-inscription{
+        margin-left: 50px;
+        margin-right: 50px;
+        /* margin-top: 40px; */
+    }
+    .partie-bleu{
+        /* height: 150px; */
+    }
+    .title{
+        position: relative;
+        font-family: 'Piedra', cursive;
+        font-size: 20px;
+        top: 40px;
+    }
+    .sous-titre3{
+        font-family: 'Piedra', cursive;
+        font-size: 15px;
+    }
+    .btn-index{
+        /* font-size: 10px; */
+        width: 100px;
+        height: 30px;
+    }
+
+    /* administration du jeu */
+
+    .nav .Monbleu{
+        margin-left: 0;
+    }
+        
+    .cadreAdmin{
+        position: absolute;
+        width: 750px;
+        height: 500px;
+        left: 180px;
+        right: 200px;
+        top: 100px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 58px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+    }
+
+
+
+
+
+
+}

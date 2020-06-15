@@ -41,29 +41,25 @@ try{
 }
 ?>
 
-<div class="row">
-    <div class="col-sm col-sm-  part-bleu">
-        <h2 class="title">BIENVENU DANS NOTRE QUIZZ</h2>
-    </div>
-    <div class="col-sm col-sm- part-blanche">
-        <h2 class="login">LOGIN</h2>
-        <form action="" method="post" id="form">
+<div class="row zone-connexion">
+    <div class="col-sm-6 text-center d-flex align-items-center justify-content-center part_bleu"> Bienvenue dans la plateforme de Quizz </div>
+
+    <div class="col-sm-6 pt-4 font-weight-bold part_blanc">
+        <div class="login col-md-12">LOGIN</div>
+        <form  method="post" id="form" class="col-md-12 mt-4">
         <?= $message ?>
-            <div class="form-group form-g">
-                <input type="text" class="form-control input-control" id="login" placeholder="login" name="login" required >
-                <div class="img1"><img src="./public/image/icone1.jpg" alt="" class="img1"></div>
-                <small id="login" class="form-text text-muted"></small>
+            <div class="form-group ">
+                <input type="text" class="form-control" id="login" placeholder="login" name="login" required>
+                <!-- <div class="img1"><img src="./public/image/icone1.jpg" alt="" class="img1"></div> -->
+                <small id="login_error" class="text-danger font-weight-bold"></small>
             </div>
-            <div class="form-group form-g">
-                <input type="password" class="form-control input-control" id="password" placeholder="password" name="password" required>
-                <div class="img1"><img src="./public/image/ic-password.png" alt="" class="img1"></div>
-                <small id="password" class="form-text text-muted"></small>
+            <div class="form-group ">
+                <input type="password" class="form-control" id="pwd" placeholder="password" name="password" required>
+                <!-- <div class="img1"><img src="./public/image/ic-password.png" alt="" class="img1"></div> -->
+                <small id="pwd_error" class="text-danger font-weight-bold"></small>
             </div>
-            <input type="submit" class="btn btn-primary btn-connexion" value="CONNEXION" name="connexion">
+            <input type="submit" class="btn font-weight-bold text-light btn-con" value="CONNEXION" name="connexion">
             <h6>Vous n'avez pas de compte ?</h6>
-            <a href="index.php?lien=inscription" class="btn-white">creer un compte</a>
+            <a href="index.php?lien=inscription" class="col-md-12 text-center mt-3 p3">creer un compte</a>
         </form>
     </div>
-<script>
-    $("#form").validate();
-</script>
